@@ -3,6 +3,7 @@ import { lazy } from 'react';
 // project import
 import Loadable from 'components/Loadable';
 import MainLayout from 'layout/MainLayout';
+import RequireAuth from 'auth/RequireAuth';
 
 // render - dashboard
 const DashboardDefault = Loadable(lazy(() => import('pages/dashboard')));
@@ -24,36 +25,64 @@ const MainRoutes = {
     children: [
         {
             path: '/',
-            element: <DashboardDefault />
+            element: (
+                <RequireAuth>
+                    <DashboardDefault />
+                </RequireAuth>
+            )
         },
         {
             path: 'color',
-            element: <Color />
+            element: (
+                <RequireAuth>
+                    <Color />
+                </RequireAuth>
+            )
         },
         {
             path: 'dashboard',
             children: [
                 {
                     path: 'default',
-                    element: <DashboardDefault />
+                    element: (
+                        <RequireAuth>
+                            <DashboardDefault />
+                        </RequireAuth>
+                    )
                 }
             ]
         },
         {
             path: 'sample-page',
-            element: <SamplePage />
+            element: (
+                <RequireAuth>
+                    <SamplePage />
+                </RequireAuth>
+            )
         },
         {
             path: 'shadow',
-            element: <Shadow />
+            element: (
+                <RequireAuth>
+                    <Shadow />
+                </RequireAuth>
+            )
         },
         {
             path: 'typography',
-            element: <Typography />
+            element: (
+                <RequireAuth>
+                    <Typography />
+                </RequireAuth>
+            )
         },
         {
             path: 'icons/ant',
-            element: <AntIcons />
+            element: (
+                <RequireAuth>
+                    <AntIcons />
+                </RequireAuth>
+            )
         }
     ]
 };

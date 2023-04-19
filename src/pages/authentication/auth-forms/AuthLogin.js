@@ -28,11 +28,16 @@ import AnimateButton from 'components/@extended/AnimateButton';
 
 // assets
 import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
+import axios from 'api/axios';
+import useAuth from 'hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 // ============================|| FIREBASE - LOGIN ||============================ //
 
 const AuthLogin = () => {
     const [checked, setChecked] = React.useState(false);
+    const { setAuth } = useAuth();
+    const navigate = useNavigate();
 
     const [showPassword, setShowPassword] = React.useState(false);
     const handleClickShowPassword = () => {
@@ -53,15 +58,24 @@ const AuthLogin = () => {
                 }}
                 validationSchema={Yup.object().shape({
                     email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
-                    password: Yup.string().max(255).required('Password is required')
+                    password: Yup.string().max(255).required('Password must be greater than 8 characters')
                 })}
                 onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
                     try {
                         setStatus({ success: false });
                         setSubmitting(false);
+                        const results = await axios.post('/login', {
+                            email: values.email,
+                            password: values.password
+                        });
+                        const { user } = results.data;
+                        const { token } = results.data.tokens.access;
+                        localStorage.setItem('token', token);
+                        setAuth({ user: user });
+                        navigate('/');
                     } catch (err) {
                         setStatus({ success: false });
-                        setErrors({ submit: err.message });
+                        setErrors({ submit: err.response.data.message });
                         setSubmitting(false);
                     }
                 }}
