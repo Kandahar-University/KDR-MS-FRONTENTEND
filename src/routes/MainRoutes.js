@@ -32,7 +32,7 @@ const MainRoutes = {
             )
         },
         {
-            path: 'color',
+            path: 'students',
             element: (
                 <RequireAuth>
                     <Color />
@@ -41,19 +41,14 @@ const MainRoutes = {
         },
         {
             path: 'dashboard',
-            children: [
-                {
-                    path: 'default',
-                    element: (
-                        <RequireAuth>
-                            <DashboardDefault />
-                        </RequireAuth>
-                    )
-                }
-            ]
+            element: (
+                <RequireAuth>
+                    <DashboardDefault />
+                </RequireAuth>
+            )
         },
         {
-            path: 'sample-page',
+            path: 'reports',
             element: (
                 <RequireAuth>
                     <SamplePage />
@@ -61,7 +56,7 @@ const MainRoutes = {
             )
         },
         {
-            path: 'shadow',
+            path: 'semesters',
             element: (
                 <RequireAuth>
                     <Shadow />
@@ -69,7 +64,7 @@ const MainRoutes = {
             )
         },
         {
-            path: 'typography',
+            path: 'teachers',
             element: (
                 <RequireAuth>
                     <Typography />

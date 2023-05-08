@@ -26,34 +26,26 @@ const utilities = {
     type: 'group',
     children: [
         {
-            id: 'util-typography',
+            id: 'teachers',
             title: 'Teachers',
             type: 'item',
-            url: '/typography',
+            url: '/teachers',
             icon: icons.FontSizeOutlined
         },
         {
-            id: 'util-color',
+            id: 'students',
             title: 'Students',
             type: 'item',
-            url: '/color',
+            url: '/students',
             icon: icons.BgColorsOutlined
         },
         {
-            id: 'util-shadow',
+            id: 'semesters',
             title: 'Semesters',
             type: 'item',
-            url: '/shadow',
+            url: '/semesters',
             icon: icons.BarcodeOutlined
         }
-        // {
-        //     id: 'ant-icons',
-        //     title: '',
-        //     type: 'item',
-        //     url: '/icons/ant',
-        //     icon: icons.AntDesignOutlined,
-        //     breadcrumbs: false
-        // }
     ]
 };
 

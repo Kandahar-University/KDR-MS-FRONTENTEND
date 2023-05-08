@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Avatar, Chip, ListItemButton, ListItemIcon, ListItemText, Typography } from '@mui/material';
+import { ListItemButton, ListItemIcon, ListItemText, Typography } from '@mui/material';
 
 // project import
 import { activeItem } from 'store/reducers/menu';
@@ -75,17 +75,6 @@ const NavItem = ({ item, level }) => {
                             bgcolor: 'primary.lighter'
                         }
                     }
-                }),
-                ...(!drawerOpen && {
-                    '&:hover': {
-                        bgcolor: 'transparent'
-                    },
-                    '&.Mui-selected': {
-                        '&:hover': {
-                            bgcolor: 'transparent'
-                        },
-                        bgcolor: 'transparent'
-                    }
                 })
             }}
         >
@@ -93,7 +82,6 @@ const NavItem = ({ item, level }) => {
                 <ListItemIcon
                     sx={{
                         minWidth: 28,
-                        color: isSelected ? iconSelectedColor : textColor,
                         ...(!drawerOpen && {
                             borderRadius: 1.5,
                             width: 36,
@@ -106,32 +94,23 @@ const NavItem = ({ item, level }) => {
                         }),
                         ...(!drawerOpen &&
                             isSelected && {
-                                bgcolor: 'primary.lighter',
-                                '&:hover': {
-                                    bgcolor: 'primary.lighter'
-                                }
-                            })
+                            bgcolor: 'primary.lighter',
+                            '&:hover': {
+                                bgcolor: 'primary.lighter'
+                            }
+                        })
                     }}
                 >
                     {itemIcon}
                 </ListItemIcon>
             )}
-            {(drawerOpen || (!drawerOpen && level !== 1)) && (
+            {(
                 <ListItemText
                     primary={
                         <Typography variant="h6" sx={{ color: isSelected ? iconSelectedColor : textColor }}>
                             {item.title}
                         </Typography>
                     }
-                />
-            )}
-            {(drawerOpen || (!drawerOpen && level !== 1)) && item.chip && (
-                <Chip
-                    color={item.chip.color}
-                    variant={item.chip.variant}
-                    size={item.chip.size}
-                    label={item.chip.label}
-                    avatar={item.chip.avatar && <Avatar>{item.chip.avatar}</Avatar>}
                 />
             )}
         </ListItemButton>
